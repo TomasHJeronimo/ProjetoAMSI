@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">HuntingJobs</string>
+    <string name="txtMailHint">Email</string>
+    <string name="txtPasswordHint">Password</string>
+    <string name="btnLogin">Login</string>
+    <string name="erroPass">Password Inválida</string>
+    <string name="erro">Email Inválido</string>
+    <string name="itemLista">Página Inicial</string>
+    <string name="homePage">Página Incial</string>
+    <string name="navPerfil">Perfil</string>
+    <string name="txtOutros">Outros</string>
+    <string name="settings">Definições</string>
+    <string name="sobre_nos">Sobre Nós</string>
+    <string name="meusPosts">Meus Posts</string>
+    <string name="emailSimples">Email</string>
+    <string name="ndOpen">Open</string>
+    <string name="ndClose">Close</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="NomeUtilizador">NomeUtilizador</string>
+</resources>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:contentDescription="@string/app_name"
+    tools:context=".Vistas.HomePageActivity"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="For more ui/ux visit www.materialuiux.com"
+        android:orientation="vertical">
+
+
+
+        <RelativeLayout
+            android:id="@+id/id_Profile_RelativeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="41dp">
+
+
+            <RelativeLayout
+                android:id="@+id/id_ProfileImage_RelativeLayout"
+                android:layout_width="190dp"
+                android:layout_height="160dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true">
+
+                <!--  Profile Image -->
+
+                <ImageView
+                    android:id="@+id/id_Profile_Image"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/ic_launcher_background"
+                    app:srcCompat="@drawable/ic_launcher_foreground" />
+
+            </RelativeLayout>
+
+            <!-- User Name  -->
+
+            <TextView
+                android:id="@+id/id_fullName_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/id_ProfileImage_RelativeLayout"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="18dp"
+                android:text="@string/NomeUtilizador"
+                android:textSize="20sp" />
+
+            <!--   tittle   -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/id_fullName_TextView"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="12dp"
+                android:text="@string/emailSimples"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/slidingtabs"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:contentDescription="@string/app_name"
+        app:tabBackground="@color/purple_200"
+        app:tabIndicatorColor="@color/purple_200"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextAppearance="@style/TextAppearance.Material3.BodyLarge"
+        app:tabTextColor="@color/black">
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginRight="16dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        />
+
+
+</FrameLayout>
