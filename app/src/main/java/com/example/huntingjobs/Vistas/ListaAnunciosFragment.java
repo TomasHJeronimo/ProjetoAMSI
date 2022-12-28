@@ -36,6 +36,8 @@ public class ListaAnunciosFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_lista_anuncios, container, false);
         setHasOptionsMenu(true);
 
+        SingletonGestorAnuncios.getInstance(getContext()).getAllAnuncios(getContext());
+
         listaAnuncios = view.findViewById(R.id.lvAnuncios);
         ArrayList<Anuncio> anuncios = SingletonGestorAnuncios.getInstance(getContext()).getAnunciosDB();
         adaptador = new ListaAnunciosAdapter(getContext(), SingletonGestorAnuncios.getInstance(getContext()).getAnunciosDB());

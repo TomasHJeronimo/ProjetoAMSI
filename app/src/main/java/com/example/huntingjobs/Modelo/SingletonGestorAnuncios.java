@@ -1,17 +1,27 @@
 package com.example.huntingjobs.Modelo;
 
 import android.content.Context;
+import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.huntingjobs.DBHelpers.AnuncioDBHelper;
+import com.example.huntingjobs.Listeners.AnunciosListener;
+import com.example.huntingjobs.utils.AnuncioJsonParser;
+import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONArray;
 
 import java.sql.Array;
 import java.util.ArrayList;
 
 public class SingletonGestorAnuncios {
 
-    private final static String mUrlAnuncios = "http://localhost/HuntingJobs/backend/web/api/anuncios";
+    private final static String mUrlAnuncios = "http://10.0.2.2/HuntingJobs/backend/web/api/anuncios";
     //  private final static String mUrlApiLogin = "http://amsi.dei.estg.ipleiria.pt/api/auth/login";
     private static SingletonGestorAnuncios instancia = null;
     private ArrayList<Anuncio> anunciosLista;
@@ -20,11 +30,14 @@ public class SingletonGestorAnuncios {
 
     private AnuncioDBHelper anunciosDB = null;
 
+
+    //Listeners
+    private AnunciosListener anunciosListener;
+
     public SingletonGestorAnuncios(Context context) {
         anunciosLista = new ArrayList<>();
         anunciosDB = new AnuncioDBHelper(context);
-
-        gerarDadosDinamicos();
+       // gerarDadosDinamicos();
     }
 
 
@@ -97,6 +110,39 @@ public class SingletonGestorAnuncios {
         anunciosLista.add(novoAnuncio6);
 
         adicionarAnunciosDB(anunciosLista);
+    }
+
+    public void getAllAnuncios(final Context context) {
+        if (!AnuncioJsonParser.internetConnection(context)) {
+            Toast.makeText(context, "Sem acesso á internet", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                mUrlAnuncios,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        anunciosLista = AnuncioJsonParser.parserJsonAnuncios(response);
+                        adicionarAnunciosDB(anunciosLista);
+
+
+                        //ativar o listener dos anuncios
+                        if (anunciosListener != null) {
+                            anunciosListener.onRefreshListaAnuncios(anunciosLista);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+        volleyQueue.add(jsonArrayRequest);
     }
 
 
