@@ -14,7 +14,10 @@
             android:id="@+id/navPerfil"
             android:icon="@drawable/ic_perfil"
             android:title="@string/navPerfil" />
-
+        <item
+            android:id="@+id/listaAnuncio"
+            android:icon="@drawable/ic_lista"
+            android:title="@string/anuncioLista"/>
 
     </group>
 

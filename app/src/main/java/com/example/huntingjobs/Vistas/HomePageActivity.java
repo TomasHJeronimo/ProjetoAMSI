@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -51,7 +52,11 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
     }
 
 
-    private void carregarFragmentoInicial() {
+    private boolean carregarFragmentoInicial() {
+        Menu menu = nV.getMenu();
+        MenuItem item = menu.getItem(2);
+        item.setChecked(true);
+        return onNavigationItemSelected(item);
     }
 
     private void carregarCabecalho() {
@@ -69,6 +74,11 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         bundle.putString(LoginActivity.MAIL, mail);
         Toolbar toolbar = findViewById(R.id.toolbar);
         switch (opcao){
+            case R.id.listaAnuncio:
+                fragment = new ListaAnunciosFragment();
+                fragment.setArguments(bundle);
+                toolbar.setTitle("Lista de Anuncios");
+                break;
             case R.id.navHomePage:
                 toolbar.setTitle("Página Inicial");
                 break;
