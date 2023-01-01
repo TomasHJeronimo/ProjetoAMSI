@@ -2,21 +2,26 @@ package com.example.huntingjobs.Vistas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.huntingjobs.Listeners.LoginListener;
+import com.example.huntingjobs.Modelo.SingletonGestorAnuncios;
 import com.example.huntingjobs.R;
+import com.example.huntingjobs.utils.LoginJsonParser;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements LoginListener {
 
 
     public static final String MAIL = "amsi.dei.estg.ipleiria.books.mail";
+    private static final String USERNAME = "username";
     private EditText etPass;
-    private EditText etEmail;
+    private EditText etUsername;
     private Button btnLogin;
 
     @Override
@@ -25,11 +30,11 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         btnLogin = findViewById(R.id.btnLogin);
-        etEmail = findViewById(R.id.etMailInsert);
+        etUsername = findViewById(R.id.etUsernameInsert);
         etPass = findViewById(R.id.etPassword);
 
-        etEmail.setText("pedromonteiro@outlook.pt");
-        etPass.setText("12345");
+        etUsername.setText("Monteiro");
+        // etPass.setText("Password");
 
         //Listener
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -40,15 +45,17 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+        SingletonGestorAnuncios.getInstance(this).setLoginListener(this);
     }
+
 
     private void validarLogin() {
         //Dados dos campos Login
-        String mail = etEmail.getText().toString();
+        String username = etUsername.getText().toString();
         String pass = etPass.getText().toString();
 
-        if (!isMailValido(mail)){
-            etEmail.setError(getString(R.string.erro));
+        if (!isUsernameValido(username)){
+            etUsername.setError(getString(R.string.erro));
             return;
         }
 
@@ -56,9 +63,7 @@ public class LoginActivity extends AppCompatActivity {
             etPass.setError(getString(R.string.erroPass));
         }
 
-        Intent intentMail = new Intent(this, HomePageActivity.class);
-        intentMail.putExtra(MAIL, mail);
-        startActivity(intentMail);
+        SingletonGestorAnuncios.getInstance(this).loginAPI(username,pass,this);
     }
 
     private boolean isPassValida(String pass) {
@@ -69,10 +74,10 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private boolean isMailValido(String mail) {
+    private boolean isUsernameValido(String username) {
 
         //Se a caixa de texto estiver nula ou vazia.
-        if (mail == null || mail.isEmpty()){
+        if (username == null || username.isEmpty()){
             return false;
         }
 
@@ -81,8 +86,19 @@ public class LoginActivity extends AppCompatActivity {
 
 
         //Devolve
-        return Patterns.EMAIL_ADDRESS.matcher(mail).matches();
+        return true;
     }
 
-
+    @Override
+    public void onValidateLogin(String username, String password, Context context) {
+        if (isUsernameValido(username) && isPassValida(password)){
+            Intent intent = new Intent(this, HomePageActivity.class);
+            intent.putExtra(USERNAME, username);
+            startActivity(intent);
+            finish();
+        }
+        else{
+            Toast.makeText(context, "Login Inválido, Tente novamente", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

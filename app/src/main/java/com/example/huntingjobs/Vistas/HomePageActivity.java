@@ -9,13 +9,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.huntingjobs.Modelo.SingletonGestorAnuncios;
 import com.example.huntingjobs.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -60,7 +63,11 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
     }
 
     private void carregarCabecalho() {
-        mail = getIntent().getStringExtra(LoginActivity.MAIL);
+
+        SharedPreferences sharedPreference = getSharedPreferences(SingletonGestorAnuncios.DADOS_USER, Context.MODE_PRIVATE);
+        mail = sharedPreference.getString(SingletonGestorAnuncios.MAIL,null);
+
+
         View hview = nV.getHeaderView(0);
         TextView tvmail = hview.findViewById(R.id.tvEmailheader);
         tvmail.setText(mail);

@@ -4,7 +4,7 @@
     <string name="txtPasswordHint">Password</string>
     <string name="btnLogin">Login</string>
     <string name="erroPass">Password Inválida</string>
-    <string name="erro">Email Inválido</string>
+    <string name="erro">Username Inválido</string>
     <string name="itemLista">Página Inicial</string>
     <string name="homePage">Página Incial</string>
     <string name="navPerfil">Perfil</string>
@@ -20,4 +20,5 @@
     <string name="NomeUtilizador">NomeUtilizador</string>
     <string name="bem_vindo">Bem Vindo!</string>
     <string name="anuncioLista">Anuncios</string>
+    <string name="no_internet">Sem acesso á internet</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.huntingjobs.Adaptadores;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,7 +76,9 @@ public class ListaAnunciosAdapter extends BaseAdapter {
 
         public void update(Anuncio anuncio){
             tvTituloLista.setText(anuncio.getTitulo());
-            tvDescricaoLista.setText(anuncio.getDescricao());
+            tvDescricaoLista.setText(Html.fromHtml(anuncio.getDescricao()));
+
+
 
         }
 

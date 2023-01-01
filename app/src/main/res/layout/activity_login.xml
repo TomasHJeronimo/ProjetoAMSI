@@ -57,10 +57,10 @@
         android:layout_marginLeft="35dp"/>
 
     <EditText
-        android:id="@+id/etMailInsert"
+        android:id="@+id/etUsernameInsert"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Inserir Email"
+        android:text="Inserir Username"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
         android:layout_marginTop="10dp"/>
