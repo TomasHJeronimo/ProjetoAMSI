@@ -21,4 +21,7 @@
     <string name="bem_vindo">Bem Vindo!</string>
     <string name="anuncioLista">Anuncios</string>
     <string name="no_internet">Sem acesso á internet</string>
+    <string name="btnRegisto">Criar Conta!</string>
+    <string name="usernameinvalido">Username Inválido</string>
+    <string name="emailinvalido">Email Inválido</string>
 </resources>

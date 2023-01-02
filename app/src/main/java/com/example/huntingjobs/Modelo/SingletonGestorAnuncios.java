@@ -18,6 +18,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.huntingjobs.DBHelpers.AnuncioDBHelper;
 import com.example.huntingjobs.Listeners.AnunciosListener;
 import com.example.huntingjobs.Listeners.LoginListener;
+import com.example.huntingjobs.Listeners.RegistoListenener;
 import com.example.huntingjobs.R;
 import com.example.huntingjobs.utils.AnuncioJsonParser;
 import com.example.huntingjobs.utils.LoginJsonParser;
@@ -34,6 +35,7 @@ public class SingletonGestorAnuncios {
 
     private final static String mUrlAnuncios = "http://10.0.2.2/HuntingJobs/backend/web/api/anuncios";
     private final static String mUrlApiLogin = "http://10.0.2.2/HuntingJobs/backend/web/api/auth/login";
+    private final static String mUrlRegisto = "http://10.0.2.2/HuntingJobs/backend/web/api/auth/novo";
     public final static String ID = "id";
     public final static String MAIL = "email";
     public final static String USERNAME = "username";
@@ -46,6 +48,7 @@ public class SingletonGestorAnuncios {
 
     private AnuncioDBHelper anunciosDB = null;
     private LoginListener loginListener;
+    private RegistoListenener registoListenener;
 
 
     //Listeners
@@ -145,7 +148,7 @@ public class SingletonGestorAnuncios {
                     public void onResponse(String response) {
 
 
-                        if (!response.equals("null")){
+                        if (!response.equals("null")) {
                             User loginUser = LoginJsonParser.parserJsonLogin(response);
                             SharedPreferences sharedPreferencesUser = context.getSharedPreferences(DADOS_USER, Context.MODE_PRIVATE);
                             SharedPreferences.Editor sharedEditor = sharedPreferencesUser.edit();
@@ -160,8 +163,7 @@ public class SingletonGestorAnuncios {
                             }
 
                             Toast.makeText(context, "Resulta", Toast.LENGTH_SHORT).show();
-                        }
-                        else{
+                        } else {
                             Toast.makeText(context, "Login Inválido", Toast.LENGTH_SHORT).show();
                         }
 
@@ -178,7 +180,7 @@ public class SingletonGestorAnuncios {
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<String, String>();
                 params.put("username", username);
                 params.put("password", password);
 
@@ -190,8 +192,58 @@ public class SingletonGestorAnuncios {
         volleyQueue.add(stringRequest);
     }
 
+    public void registoAPI(final String username, final String email, final String password, Context context) {
+        if (!AnuncioJsonParser.internetConnection(context)) {
+            Toast.makeText(context, R.string.no_internet, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST,
+                mUrlRegisto,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (!response.equals("null")) {
+                            Toast.makeText(context, "Novo Utilizador Criado", Toast.LENGTH_SHORT).show();
+                            if (registoListenener != null) {
+                                registoListenener.onValidateRegisto(username, email, password, context);
+                            }
+                        } else {
+                            Toast.makeText(context, "Registo Inválido", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context, "Erro na conexão", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("username", username);
+                params.put("email", email);
+                params.put("password", password);
+                return params;
+            }
+
+        };
+
+        volleyQueue.add(stringRequest);
+
+
+    }
+
 
     public void setLoginListener(LoginListener loginListener) {
         this.loginListener = loginListener;
+    }
+
+    public void setRegistoListenener(RegistoListenener registoListenener) {
+        this.registoListenener = registoListenener;
     }
 }

@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.example.huntingjobs.Listeners.LoginListener;
 import com.example.huntingjobs.Modelo.SingletonGestorAnuncios;
 import com.example.huntingjobs.R;
-import com.example.huntingjobs.utils.LoginJsonParser;
 
 public class LoginActivity extends AppCompatActivity implements LoginListener {
 
@@ -22,7 +21,7 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
     private static final String USERNAME = "username";
     private EditText etPass;
     private EditText etUsername;
-    private Button btnLogin;
+    private Button btnLogin,btnRegisto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +29,12 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
         setContentView(R.layout.activity_login);
 
         btnLogin = findViewById(R.id.btnLogin);
+        btnRegisto = findViewById(R.id.btnRegisto);
         etUsername = findViewById(R.id.etUsernameInsert);
         etPass = findViewById(R.id.etPassword);
 
         etUsername.setText("Monteiro");
-        // etPass.setText("Password");
+        etPass.setText("");
 
         //Listener
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +44,15 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
             }
         });
 
+
+        btnRegisto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentRegisto = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(intentRegisto);
+                finish();
+            }
+        });
 
         SingletonGestorAnuncios.getInstance(this).setLoginListener(this);
     }
@@ -81,11 +90,6 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
             return false;
         }
 
-
-        //Padrões para testar o e-mail inserido
-
-
-        //Devolve
         return true;
     }
 
@@ -98,7 +102,7 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
             finish();
         }
         else{
-            Toast.makeText(context, "Login Inválido, Tente novamente", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Erro no Registo", Toast.LENGTH_SHORT).show();
         }
     }
 }
