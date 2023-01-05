@@ -7,4 +7,5 @@ import java.util.ArrayList;
 public interface AnunciosListener {
 
     void onRefreshListaAnuncios(ArrayList<Anuncio> anuncios);
+
 }

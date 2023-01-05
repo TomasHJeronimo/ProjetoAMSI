@@ -15,14 +15,13 @@ public class Anuncio implements Serializable {
 
     //Construtor de um anuncio
     public Anuncio(int id, int id_empresa, String titulo, String descricao, String perfil_procurado, int categoria) {
-        this.setId(id);
-        this.setId_empresa(id_empresa);
-        this.setTitulo(titulo);
-        this.setDescricao(descricao);
-        this.setPerfil_procurado(perfil_procurado);
-        this.setCategoria(categoria);
+        this.id = id;
+        this.id_empresa = id_empresa;
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.perfil_procurado = perfil_procurado;
+        this.categoria = categoria;
     }
-
 
     public int getId() {
         return id;

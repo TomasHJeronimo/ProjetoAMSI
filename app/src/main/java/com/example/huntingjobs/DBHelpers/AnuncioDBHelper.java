@@ -9,14 +9,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import com.example.huntingjobs.Modelo.Anuncio;
+import com.example.huntingjobs.Modelo.Empresa;
 
 import java.util.ArrayList;
 
 public class AnuncioDBHelper extends SQLiteOpenHelper {
 
-    private final static String DB_NAME = "DBAnuncios";
+    public final static String DB_NAME = "DBAnuncios";
     private final static String TABLE_NAME = "anuncios";
-    private final static int DB_VERSION = 1;
+    public final static int DB_VERSION = 2;
 
 
     //CONSTANTES DAS TABELAS DA BASE DE DADOS
@@ -26,13 +27,13 @@ public class AnuncioDBHelper extends SQLiteOpenHelper {
     private final static String DESCRICAO = "descricao";
     private final static String PERFIL_PROCURADO = "perfil_procurado";
     private final static String CATEGORIA = "categoria";
-    private SQLiteDatabase database; //Instancia da SQLiteDatabase -- usado para CRUDS
+    SQLiteDatabase database; //Instancia da SQLiteDatabase -- usado para CRUDS
 
 
     public AnuncioDBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
 
-        this.database = this.getWritableDatabase();
+        database = this.getWritableDatabase();
     }
 
     @Override
@@ -47,7 +48,6 @@ public class AnuncioDBHelper extends SQLiteOpenHelper {
                 CATEGORIA + " INTEGER );";
 
         sqLiteDatabase.execSQL(SQLtable);
-
     }
 
     @Override
@@ -104,6 +104,5 @@ public class AnuncioDBHelper extends SQLiteOpenHelper {
     public void removeAllAnunciosLBD() {
         database.delete(TABLE_NAME,null,null);
     }
-
 
 }
