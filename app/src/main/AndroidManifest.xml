@@ -17,8 +17,17 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Vistas.DetalhesEmpresaActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Vistas.DetalhesAnuncioActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/Theme.HuntingJobs.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

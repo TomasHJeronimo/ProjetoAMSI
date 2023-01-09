@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Vistas.DetalhesEmpresaActivity"
+    android:orientation="vertical"
+    android:id="@+id/linearmain">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linearEmpresa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#305370"
+            android:orientation="vertical"
+            android:weightSum="0">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="275dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/empresa_animated"
+                app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvNomeEmpresaDetalhes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="TextView"
+                android:textColor="@color/white"
+                android:textSize="34sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvEmailEmpresaDetalhes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="TextView"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginBottom="24dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Descrição da Empresa"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etDescricaoEmpresaDetalhes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:inputType="textMultiLine"
+                            android:lines="8"
+                            android:focusable="false"
+                            android:maxLines="10"
+                            android:minLines="6"
+                            android:scrollbars="vertical" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Contactar a Empresa"
+                            android:textSize="24sp"
+                            android:textStyle="bold"/>
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etContactoEmpresaDetalhes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:inputType="textMultiLine"
+                            android:lines="8"
+                            android:focusable="false"
+                            android:maxLines="10"
+                            android:minLines="6"
+                            android:scrollbars="vertical"/>
+
+
+
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="#80CFA9"
+        android:clickable="true"
+        android:src="@drawable/ic_star_empty"
+        app:layout_anchor="@id/linearEmpresa"
+        app:layout_anchorGravity="bottom|right|end" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

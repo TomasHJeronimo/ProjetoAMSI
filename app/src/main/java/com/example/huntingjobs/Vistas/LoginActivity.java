@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
         etPass = findViewById(R.id.etPassword);
 
         etUsername.setText("Monteiro");
+        etPass.setText("918782326mp");
 
         //Listener
         btnLogin.setOnClickListener(new View.OnClickListener() {
