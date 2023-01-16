@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.huntingjobs.Modelo.Anuncio;
+import com.example.huntingjobs.Modelo.SingletonGestorAnuncios;
 import com.example.huntingjobs.R;
 
 import java.util.ArrayList;
@@ -67,7 +68,7 @@ public class ListaAnunciosAdapter extends BaseAdapter {
     }
 
     private class ViewHolderLista{
-        private TextView tvTituloLista,tvDescricaoLista;
+        private TextView tvTituloLista,tvDescricaoLista, tvNomeEmpresaLista;
 
         public ViewHolderLista(View view){
             tvTituloLista = view.findViewById(R.id.tvTituloAnuncio);
@@ -77,9 +78,6 @@ public class ListaAnunciosAdapter extends BaseAdapter {
         public void update(Anuncio anuncio){
             tvTituloLista.setText(anuncio.getTitulo());
             tvDescricaoLista.setText(Html.fromHtml(anuncio.getDescricao()));
-
-
-
         }
 
     }

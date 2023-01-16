@@ -37,11 +37,14 @@ public class ListaAnunciosFragment extends Fragment {
                              Bundle savedInstanceState) {
 
 
+        SingletonGestorAnuncios.getInstance(getContext()).getAllAnuncios(getContext());
+        SingletonGestorAnuncios.getInstance(getContext()).getAllEmpresas(getContext());
+
+
         View view = inflater.inflate(R.layout.fragment_lista_anuncios, container, false);
         setHasOptionsMenu(true);
 
-        SingletonGestorAnuncios.getInstance(getContext()).getAllAnuncios(getContext());
-        SingletonGestorAnuncios.getInstance(getContext()).getAllEmpresas(getContext());
+
 
 
         listaAnuncios = view.findViewById(R.id.lvAnuncios);

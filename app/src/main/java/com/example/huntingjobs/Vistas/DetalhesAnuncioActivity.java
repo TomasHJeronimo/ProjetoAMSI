@@ -18,9 +18,11 @@ import com.example.huntingjobs.R;
 public class DetalhesAnuncioActivity extends AppCompatActivity {
 
     public static final String EMPRESA = "empresa";
+    public static final String EMPRESA_CANDIDATURA = "empresa_candidatura";
+    public static final String ANUNCIO_CANDIDATURA = "anuncio_candidatura";
     private TextView tvTitulo, tvDescricao, tvEmpresa, tvPerfil;
     private Anuncio anuncio;
-    private Button search;
+    private Button search,candidatura;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class DetalhesAnuncioActivity extends AppCompatActivity {
         tvEmpresa = findViewById(R.id.etEmpresaAnuncio);
         tvPerfil = findViewById(R.id.etPerfil);
         search = findViewById(R.id.btnSearchEmpresa);
+        candidatura = findViewById(R.id.btnCandidatura);
 
         //Atribuir o ID do anuncio
         long id = getIntent().getLongExtra(ListaAnunciosFragment.ANUNCIO, -1);
@@ -61,7 +64,27 @@ public class DetalhesAnuncioActivity extends AppCompatActivity {
 
                 Intent anuncio =new Intent(getApplicationContext(),DetalhesEmpresaActivity.class);
                 anuncio.putExtra(EMPRESA, id);
-               startActivity(anuncio);
+                startActivity(anuncio);
+                overridePendingTransition(R.anim.slide_out, R.anim.slide_down_up);
+            }
+        });
+
+
+        candidatura.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                long id_empresa = SingletonGestorAnuncios.getInstance(getApplicationContext()).getEmpresa(empresa.getId()).getId();
+                long id_anuncio = anuncio.getId();
+
+                Toast.makeText(DetalhesAnuncioActivity.this, "" + anuncio.getId(), Toast.LENGTH_SHORT).show();
+
+                Intent candidatura = new Intent(getApplicationContext(), CandidaturaActivity.class);
+                candidatura.putExtra(EMPRESA_CANDIDATURA, id_empresa);
+                candidatura.putExtra(ANUNCIO_CANDIDATURA, id_anuncio);
+                startActivity(candidatura);
+                overridePendingTransition(R.anim.slide_left, R.anim.slide_out_right);
+                finish();
             }
         });
     }

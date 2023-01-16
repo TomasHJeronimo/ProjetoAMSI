@@ -1,6 +1,7 @@
 package com.example.huntingjobs.Vistas;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.text.Html;
@@ -66,5 +67,12 @@ public class DetalhesEmpresaActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_left, R.anim.slide_out_right);
     }
 }
