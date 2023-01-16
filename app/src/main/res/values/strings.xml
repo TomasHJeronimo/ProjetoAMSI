@@ -25,4 +25,5 @@
     <string name="usernameinvalido">Username Inválido</string>
     <string name="emailinvalido">Email Inválido</string>
     <string name="candidatura">Candidatar-me!</string>
+    <string name="candidaturaLista">Candidaturas</string>
 </resources>

@@ -19,10 +19,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.huntingjobs.Modelo.SingletonGestorAnuncios;
+import com.example.huntingjobs.Modelo.SingletonGestorCandidaturas;
 import com.example.huntingjobs.R;
 import com.google.android.material.navigation.NavigationView;
 
-public class HomePageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class HomePageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private NavigationView nV;
     private DrawerLayout dL;
@@ -41,6 +42,8 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         nV = findViewById(R.id.navView);
 
         fragmentManager = getSupportFragmentManager();
+
+        SingletonGestorCandidaturas.getInstance(getApplicationContext()).getAllCandidaturasUser(getApplicationContext());
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, dL, toolbar, R.string.ndOpen,R.string.ndClose);
         toggle.syncState();
@@ -100,6 +103,10 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
                 break;
             case R.id.nav_settings:
                 System.out.println("Nav Settings");
+                break;
+            case R.id.listaCandidaturas:
+                fragment = new ListaCandidaturasFragment();
+                toolbar.setTitle("Lista de Candidaturas");
                 break;
         }
 

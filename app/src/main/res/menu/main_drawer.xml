@@ -18,6 +18,10 @@
             android:id="@+id/listaAnuncio"
             android:icon="@drawable/ic_lista"
             android:title="@string/anuncioLista"/>
+        <item
+            android:id="@+id/listaCandidaturas"
+            android:icon="@drawable/ic_lista"
+            android:title="@string/candidaturaLista"/>
 
     </group>
 
