@@ -14,7 +14,7 @@ import com.example.huntingjobs.Listeners.LoginListener;
 import com.example.huntingjobs.Modelo.SingletonGestorAnuncios;
 import com.example.huntingjobs.R;
 
-public class LoginActivity extends AppCompatActivity implements LoginListener {
+public class LoginActivity extends AppCompatActivity implements LoginListener{
 
 
     public static final String MAIL = "amsi.dei.estg.ipleiria.books.mail";

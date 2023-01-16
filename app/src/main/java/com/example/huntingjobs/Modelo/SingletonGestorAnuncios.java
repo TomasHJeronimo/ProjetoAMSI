@@ -2,6 +2,8 @@ package com.example.huntingjobs.Modelo;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.icu.util.Calendar;
+import android.util.Base64;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -18,10 +20,12 @@ import com.android.volley.toolbox.Volley;
 import com.example.huntingjobs.DBHelpers.AnuncioDBHelper;
 import com.example.huntingjobs.DBHelpers.EmpresaDBHelper;
 import com.example.huntingjobs.Listeners.AnunciosListener;
+import com.example.huntingjobs.Listeners.CandidaturaListener;
 import com.example.huntingjobs.Listeners.EmpresasListener;
 import com.example.huntingjobs.Listeners.LoginListener;
 import com.example.huntingjobs.Listeners.RegistoListenener;
 import com.example.huntingjobs.R;
+import com.example.huntingjobs.Vistas.LoginActivity;
 import com.example.huntingjobs.utils.AnuncioJsonParser;
 import com.example.huntingjobs.utils.EmpresasJsonParser;
 import com.example.huntingjobs.utils.LoginJsonParser;
@@ -30,7 +34,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,6 +47,8 @@ public class SingletonGestorAnuncios {
     private final static String mUrlApiLogin = "http://10.0.2.2/HuntingJobs/backend/web/api/auth/login";
     private final static String mUrlRegisto = "http://10.0.2.2/HuntingJobs/backend/web/api/auth/novo";
     private final static String mUrlEmpresas = "http://10.0.2.2/HuntingJobs/backend/web/api/empresas";
+    private final static String mUrlCandidatura = "http://10.0.2.2/HuntingJobs/backend/web/api/candidaturas/nova";
+
     public final static String ID = "id";
     public final static String MAIL = "email";
     public final static String USERNAME = "username";
@@ -63,6 +72,8 @@ public class SingletonGestorAnuncios {
     private RegistoListenener registoListenener;
     private AnunciosListener anunciosListener;
     private EmpresasListener empresasListener;
+    private CandidaturaListener candidaturaListener;
+
 
 
     public SingletonGestorAnuncios(Context context) {
@@ -172,6 +183,62 @@ public class SingletonGestorAnuncios {
         volleyQueue.add(jsonArrayRequest);
     }
 
+    public void sendCandidatura(final Context context, String mensagem, int id_anuncio, int id_user) {
+        if (!AnuncioJsonParser.internetConnection(context)) {
+            Toast.makeText(context, "Sem acesso á internet", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST,
+                mUrlCandidatura,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        if (!response.equals("null")) {
+
+                            if (candidaturaListener != null) {
+                                candidaturaListener.onValidateCandidatura(
+                                        mensagem, ""
+                                                + id_anuncio, ""
+                                                + id_user ,
+                                                context);
+                            }
+
+                            Toast.makeText(context, "Candidatura Enviada", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(context, "Candidatura Inválida", Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context, "Erro na conexão", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("mensagem", mensagem);
+                params.put("id_anuncio", "" + id_anuncio);
+                params.put("id_user", "" + id_user);
+
+                return params;
+            }
+
+        };
+
+        volleyQueue.add(stringRequest);
+
+
+    }
+
     public void getAllEmpresas(final Context context) {
         if (!AnuncioJsonParser.internetConnection(context)) {
             Toast.makeText(context, "Sem acesso á internet", Toast.LENGTH_SHORT).show();
@@ -218,7 +285,6 @@ public class SingletonGestorAnuncios {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
 
                         if (!response.equals("null")) {
                             User loginUser = LoginJsonParser.parserJsonLogin(response);
@@ -315,6 +381,10 @@ public class SingletonGestorAnuncios {
 
     public void setRegistoListenener(RegistoListenener registoListenener) {
         this.registoListenener = registoListenener;
+    }
+
+    public void setCandidaturaListener(CandidaturaListener candidaturaListener) {
+        this.candidaturaListener = candidaturaListener;
     }
 
     public void setAnunciosListener(AnunciosListener anunciosListener) {

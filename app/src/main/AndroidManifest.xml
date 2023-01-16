@@ -17,12 +17,19 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Vistas.CandidaturaActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="3" />
+        </activity>
+        <activity
             android:name=".Vistas.DetalhesEmpresaActivity"
             android:exported="false"
             android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="3" />
         </activity>
         <activity
             android:name=".Vistas.DetalhesAnuncioActivity"
@@ -30,14 +37,14 @@
             android:theme="@style/Theme.HuntingJobs.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="3" />
         </activity>
         <activity
             android:name=".Vistas.RegisterActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="3" />
         </activity>
         <activity
             android:name=".Vistas.HomePageActivity"
@@ -45,7 +52,7 @@
             android:theme="@style/Theme.HuntingJobs.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="3" />
         </activity>
         <activity
             android:name=".Vistas.LoginActivity"
@@ -58,7 +65,7 @@
 
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="3" />
         </activity>
     </application>
 

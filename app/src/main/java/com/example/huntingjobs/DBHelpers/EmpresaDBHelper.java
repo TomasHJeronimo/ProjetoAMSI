@@ -29,6 +29,7 @@ public class EmpresaDBHelper extends SQLiteOpenHelper {
         super(context, AnuncioDBHelper.DB_NAME, null, AnuncioDBHelper.DB_VERSION);
 
         this.database = this.getWritableDatabase();
+        this.onCreate(database);
     }
 
     @Override

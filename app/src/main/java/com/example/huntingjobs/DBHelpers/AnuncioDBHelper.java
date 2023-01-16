@@ -15,9 +15,9 @@ import java.util.ArrayList;
 
 public class AnuncioDBHelper extends SQLiteOpenHelper {
 
-    public final static String DB_NAME = "DBAnuncios";
+    public final static String DB_NAME = "DBJobs";
     private final static String TABLE_NAME = "anuncios";
-    public final static int DB_VERSION = 2;
+    public final static int DB_VERSION = 3;
 
 
     //CONSTANTES DAS TABELAS DA BASE DE DADOS
@@ -34,6 +34,7 @@ public class AnuncioDBHelper extends SQLiteOpenHelper {
         super(context, DB_NAME, null, DB_VERSION);
 
         database = this.getWritableDatabase();
+        this.onCreate(database);
     }
 
     @Override
@@ -52,7 +53,7 @@ public class AnuncioDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        database.execSQL("DROP TABLE IF EXISTS " + DB_NAME);
+        database.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
 
         this.onCreate(database);
     }

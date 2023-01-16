@@ -31,8 +31,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin" >
-
+                app:layout_collapseMode="pin">
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -83,10 +82,10 @@
                     android:id="@+id/btnSearchEmpresa"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#80CFA9"
+                    android:backgroundTint="#305370"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    app:icon="@drawable/ic_search_black" />
+                    app:icon="@drawable/ic_arrowup" />
 
             </LinearLayout>
 
@@ -145,12 +144,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/etPerfilProcurado" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCandidatura"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/candidatura"
-                android:backgroundTint="#80CFA9"
-                android:textColor="@color/black">
+                android:backgroundTint="#305370"
+                android:textColor="@color/white">
 
 
             </com.google.android.material.button.MaterialButton>
