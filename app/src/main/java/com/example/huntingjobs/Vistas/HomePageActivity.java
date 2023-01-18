@@ -70,7 +70,6 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         SharedPreferences sharedPreference = getSharedPreferences(SingletonGestorAnuncios.DADOS_USER, Context.MODE_PRIVATE);
         mail = sharedPreference.getString(SingletonGestorAnuncios.MAIL,null);
 
-
         View hview = nV.getHeaderView(0);
         TextView tvmail = hview.findViewById(R.id.tvEmailheader);
         tvmail.setText(mail);
@@ -93,7 +92,6 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
                 toolbar.setTitle("Página Inicial");
                 break;
             case R.id.navPerfil:
-                System.out.println("Nav Perfil");
                 fragment = new MeuPerfilFragment();
                 fragment.setArguments(bundle);
                 toolbar.setTitle("Meu Perfil");
@@ -101,13 +99,17 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
             case R.id.sobre_nos:
                 System.out.println("Nav Sobre");
                 break;
-            case R.id.nav_settings:
-                System.out.println("Nav Settings");
+            case R.id.logout:
+                getApplicationContext().getSharedPreferences(SingletonGestorAnuncios.DADOS_USER, 0).edit().clear().commit();
+                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(login);
+                finish();
                 break;
             case R.id.listaCandidaturas:
                 fragment = new ListaCandidaturasFragment();
                 toolbar.setTitle("Lista de Candidaturas");
                 break;
+
         }
 
         fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).commit();

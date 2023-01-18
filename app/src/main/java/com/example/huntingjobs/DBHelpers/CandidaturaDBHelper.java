@@ -76,6 +76,12 @@ public class CandidaturaDBHelper extends SQLiteOpenHelper {
         return null;
     }
 
+    public boolean removerCandidatura(long id) {
+        int nDelete = database.delete(TABLE_NAME, ID + " = ?", new String[]{"" + id});
+
+        return nDelete > 0;
+    }
+
 
     public ArrayList<Candidatura> getAllCandidaturasBD() {
         ArrayList<Candidatura> candidaturas = new ArrayList<>();

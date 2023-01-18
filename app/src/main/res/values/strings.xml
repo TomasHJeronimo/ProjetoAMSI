@@ -26,4 +26,7 @@
     <string name="emailinvalido">Email Inválido</string>
     <string name="candidatura">Candidatar-me!</string>
     <string name="candidaturaLista">Candidaturas</string>
+    <string name="dialog_title">Cancelar Candidatura</string>
+    <string name="dialog_mensagem">Tem a certeza que quer cancelar esta candidatura?</string>
+    <string name="sair_logout">Logout</string>
 </resources>

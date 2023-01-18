@@ -1,5 +1,8 @@
 package com.example.huntingjobs.Vistas;
 
+import android.app.ActionBar;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.huntingjobs.Adaptadores.ListaAnunciosAdapter;
 import com.example.huntingjobs.Adaptadores.ListaCandidaturasAdapter;
@@ -20,11 +25,6 @@ import com.example.huntingjobs.R;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ListaCandidaturasFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ListaCandidaturasFragment extends Fragment {
 
     public static final String CANDIDATURA = "candidatura";

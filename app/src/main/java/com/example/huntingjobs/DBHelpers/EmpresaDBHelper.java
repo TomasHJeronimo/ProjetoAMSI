@@ -106,6 +106,6 @@ public class EmpresaDBHelper extends SQLiteOpenHelper {
     }
 
     public void removeAllEmpresasLBD(){
-        //database.delete(TABLE_NAME, null,null);
+        database.delete(TABLE_NAME, null,null);
     }
 }

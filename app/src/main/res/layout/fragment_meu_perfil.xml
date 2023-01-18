@@ -63,6 +63,7 @@
 
             <!--   tittle   -->
             <TextView
+                android:id="@+id/tvMailuser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/id_fullName_TextView"
@@ -73,30 +74,6 @@
                 android:textSize="16sp" />
         </RelativeLayout>
     </LinearLayout>
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/slidingtabs"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:contentDescription="@string/app_name"
-        app:tabBackground="@color/purple_200"
-        app:tabIndicatorColor="@color/purple_200"
-        app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/white"
-        app:tabTextAppearance="@style/TextAppearance.Material3.BodyLarge"
-        app:tabTextColor="@color/black">
-
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginRight="16dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        />
 
 
 </FrameLayout>

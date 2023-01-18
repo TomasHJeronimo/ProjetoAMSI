@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@drawable/l_layout_lista_anuncio_style"
+        android:background="@drawable/l_layout_lista_candidaturas_style"
         android:orientation="vertical"
         android:padding="8dp">
 
@@ -31,7 +31,7 @@
                     android:cropToPadding="true"
                     android:scaleType="centerCrop"
                     app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-                    app:srcCompat="@drawable/joboffermini" />
+                    app:srcCompat="@drawable/ic_candidatura" />
             </LinearLayout>
 
             <LinearLayout
@@ -41,13 +41,13 @@
 
                 <TextView
                     android:id="@+id/tvAnuncio"
-                    android:layout_margin="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
                     android:gravity="center"
                     android:text="TextView" />
-            </LinearLayout>
 
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -84,7 +84,39 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="TextView"
-                        android:maxLines="2"/>
+                        android:maxLines="1"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvData"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:text="TextView" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/cancelarCandidatura"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Cancelar Candidatura"
+                        android:backgroundTint="#990000"/>
 
                 </LinearLayout>
 
