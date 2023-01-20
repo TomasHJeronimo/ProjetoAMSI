@@ -7,10 +7,6 @@
     <group android:checkableBehavior="single"
         android:id="@+id/menuLateral">
         <item
-            android:id="@+id/navHomePage"
-            android:icon="@drawable/ic_home_page"
-            android:title="@string/homePage" />
-        <item
             android:id="@+id/navPerfil"
             android:icon="@drawable/ic_perfil"
             android:title="@string/navPerfil" />

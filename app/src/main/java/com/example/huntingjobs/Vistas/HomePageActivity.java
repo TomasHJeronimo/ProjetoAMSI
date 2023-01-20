@@ -29,6 +29,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
     private DrawerLayout dL;
     private String mail;
     private FragmentManager fragmentManager;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
 
     private boolean carregarFragmentoInicial() {
         Menu menu = nV.getMenu();
-        MenuItem item = menu.getItem(2);
+        MenuItem item = menu.getItem(1);
         item.setChecked(true);
         return onNavigationItemSelected(item);
     }
@@ -88,19 +89,18 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
                 fragment.setArguments(bundle);
                 toolbar.setTitle("Lista de Anuncios");
                 break;
-            case R.id.navHomePage:
-                toolbar.setTitle("Página Inicial");
-                break;
             case R.id.navPerfil:
                 fragment = new MeuPerfilFragment();
                 fragment.setArguments(bundle);
                 toolbar.setTitle("Meu Perfil");
                 break;
             case R.id.sobre_nos:
-                System.out.println("Nav Sobre");
+                fragment = new SobreNosFragment();
+                toolbar.setTitle("Sobre Nós");
                 break;
             case R.id.logout:
-                getApplicationContext().getSharedPreferences(SingletonGestorAnuncios.DADOS_USER, 0).edit().clear().commit();
+                prefs = getSharedPreferences(SingletonGestorAnuncios.DADOS_USER, MODE_PRIVATE);
+                prefs.edit().clear().apply();
                 Intent login = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(login);
                 finish();
@@ -112,7 +112,9 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
 
         }
 
-        fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).commit();
+        if (fragment != null){
+            fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).commit();
+        }
 
         dL.closeDrawer(GravityCompat.START);
         return false;

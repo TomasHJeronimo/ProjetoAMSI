@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import com.example.huntingjobs.Listeners.CandidaturaListener;
 import com.example.huntingjobs.Modelo.Anuncio;
 import com.example.huntingjobs.Modelo.Empresa;
 import com.example.huntingjobs.Modelo.SingletonGestorAnuncios;
+import com.example.huntingjobs.Modelo.SingletonGestorCandidaturas;
 import com.example.huntingjobs.R;
 
 public class CandidaturaActivity extends AppCompatActivity implements CandidaturaListener {

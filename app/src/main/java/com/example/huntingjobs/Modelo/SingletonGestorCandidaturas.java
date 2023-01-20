@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -22,6 +25,8 @@ import com.example.huntingjobs.utils.CandidaturaJsonParser;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SingletonGestorCandidaturas {
 
@@ -59,6 +64,8 @@ public class SingletonGestorCandidaturas {
         }
         return instancia;
     }
+
+
 
 
     public Candidatura getCandidatura(int id) {

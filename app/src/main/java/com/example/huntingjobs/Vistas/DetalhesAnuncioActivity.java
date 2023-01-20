@@ -1,10 +1,18 @@
 package com.example.huntingjobs.Vistas;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,6 +23,10 @@ import com.example.huntingjobs.Modelo.Empresa;
 import com.example.huntingjobs.Modelo.SingletonGestorAnuncios;
 import com.example.huntingjobs.R;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class DetalhesAnuncioActivity extends AppCompatActivity {
 
     public static final String EMPRESA = "empresa";
@@ -22,14 +34,12 @@ public class DetalhesAnuncioActivity extends AppCompatActivity {
     public static final String ANUNCIO_CANDIDATURA = "anuncio_candidatura";
     private TextView tvTitulo, tvDescricao, tvEmpresa, tvPerfil;
     private Anuncio anuncio;
-    private Button search,candidatura;
+    private Button search, candidatura, pdf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_anuncio);
-
-
 
 
         //associar as variáveis aos componentes da vista
@@ -39,6 +49,7 @@ public class DetalhesAnuncioActivity extends AppCompatActivity {
         tvPerfil = findViewById(R.id.etPerfil);
         search = findViewById(R.id.btnSearchEmpresa);
         candidatura = findViewById(R.id.btnCandidatura);
+        pdf = findViewById(R.id.btnPdf);
 
         //Atribuir o ID do anuncio
         long id = getIntent().getLongExtra(ListaAnunciosFragment.ANUNCIO, -1);
@@ -62,7 +73,7 @@ public class DetalhesAnuncioActivity extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(), "" + SingletonGestorAnuncios.getInstance(getApplicationContext()).getEmpresa(empresa.getId()).getId(), Toast.LENGTH_SHORT).show();
                 long id = SingletonGestorAnuncios.getInstance(getApplicationContext()).getEmpresa(empresa.getId()).getId();
 
-                Intent anuncio =new Intent(getApplicationContext(),DetalhesEmpresaActivity.class);
+                Intent anuncio = new Intent(getApplicationContext(), DetalhesEmpresaActivity.class);
                 anuncio.putExtra(EMPRESA, id);
                 startActivity(anuncio);
                 overridePendingTransition(R.anim.slide_out, R.anim.slide_down_up);

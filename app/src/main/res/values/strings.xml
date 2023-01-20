@@ -29,4 +29,8 @@
     <string name="dialog_title">Cancelar Candidatura</string>
     <string name="dialog_mensagem">Tem a certeza que quer cancelar esta candidatura?</string>
     <string name="sair_logout">Logout</string>
+    <string name="content">Para navegar as diferentes áreas da aplicação, use o menu lateral</string>
+    <string name="bem_vindo_welcome">Bem vindo ao Hunting Jobs!</string>
+    <string name="verMais">Ver Website...</string>
+    <string name="aboutus">Este projeto foi desenvolvido no âmbito da UC: Acesso Móvel a Sistemas de Informação</string>
 </resources>

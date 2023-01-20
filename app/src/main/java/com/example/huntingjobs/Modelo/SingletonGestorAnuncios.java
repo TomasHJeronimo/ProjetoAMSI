@@ -43,22 +43,29 @@ import java.util.Map;
 
 public class SingletonGestorAnuncios {
 
+    //Links de acesso á API
     private final static String mUrlAnuncios = "http://10.0.2.2/HuntingJobs/backend/web/api/anuncios";
     private final static String mUrlApiLogin = "http://10.0.2.2/HuntingJobs/backend/web/api/auth/login";
     private final static String mUrlRegisto = "http://10.0.2.2/HuntingJobs/backend/web/api/auth/novo";
     private final static String mUrlEmpresas = "http://10.0.2.2/HuntingJobs/backend/web/api/empresas";
     private final static String mUrlCandidatura = "http://10.0.2.2/HuntingJobs/backend/web/api/candidaturas/nova";
 
+
+
+
+
     public final static String ID = "id";
     public final static String MAIL = "email";
     public final static String USERNAME = "username";
     public final static String PASSWORD = "password";
     public static final String DADOS_USER = "DADOS_USER";
+
+
     private static SingletonGestorAnuncios instancia = null;
     private ArrayList<Anuncio> anunciosLista;
     private ArrayList<Empresa> empresasLista;
     private static RequestQueue volleyQueue = null;
-    //   private LivrosListener livrosListener;
+
 
 
     //DBHelpers
@@ -203,7 +210,7 @@ public class SingletonGestorAnuncios {
                                         mensagem, ""
                                                 + id_anuncio, ""
                                                 + id_user ,
-                                                context);
+                                        context);
                             }
 
                             Toast.makeText(context, "Candidatura Enviada", Toast.LENGTH_SHORT).show();
@@ -238,6 +245,8 @@ public class SingletonGestorAnuncios {
 
 
     }
+
+
 
     public void getAllEmpresas(final Context context) {
         if (!AnuncioJsonParser.internetConnection(context)) {

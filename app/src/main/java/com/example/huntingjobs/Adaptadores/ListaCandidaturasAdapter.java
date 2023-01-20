@@ -9,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.example.huntingjobs.Listeners.CandidaturasListener;
 import com.example.huntingjobs.Modelo.Anuncio;
 import com.example.huntingjobs.Modelo.Candidatura;
 import com.example.huntingjobs.Modelo.SingletonGestorAnuncios;
@@ -59,6 +61,8 @@ public class ListaCandidaturasAdapter extends BaseAdapter {
             view = layoutInflater.inflate(R.layout.item_lista_candidatura,null);
         }
 
+
+
         //preenchimento do view
         ListaCandidaturasAdapter.ViewHolderLista viewHL = (ListaCandidaturasAdapter.ViewHolderLista) view.getTag();
         if (viewHL == null){
@@ -66,21 +70,27 @@ public class ListaCandidaturasAdapter extends BaseAdapter {
             view.setTag(viewHL);
         }
 
+
+
         viewHL.update(listaCandidaturas.get(i));
 
         return view;
     }
 
 
-    private class ViewHolderLista{
+
+
+    public class ViewHolderLista{
         private TextView tvNomeAnuncio,tvMensagem,tvData;
         private Button btnCancelar;
+        private ListView listaCandidaturasView;
 
         public ViewHolderLista(View view){
             tvNomeAnuncio = view.findViewById(R.id.tvAnuncio);
             tvMensagem = view.findViewById(R.id.tvMensagem);
             tvData = view.findViewById(R.id.tvData);
             btnCancelar = view.findViewById(R.id.cancelarCandidatura);
+            listaCandidaturasView = view.findViewById(R.id.listaCandidaturas);
         }
 
         public void update(Candidatura candidatura){
@@ -100,7 +110,9 @@ public class ListaCandidaturasAdapter extends BaseAdapter {
                     builder.setMessage(R.string.dialog_mensagem);
                     builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            SingletonGestorCandidaturas.getInstance(view.getContext()).removerCandidaturaAPI(view.getContext(), candidatura);
+                            SingletonGestorCandidaturas.getInstance(context.getApplicationContext()).removerCandidaturaAPI(context.getApplicationContext(), candidatura);
+                            SingletonGestorCandidaturas.getInstance(context.getApplicationContext()).removerCandidaturaBD(candidatura.getId());
+                            ListaCandidaturasFragment.reloadAllData();
                         }
                     });
                     builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {

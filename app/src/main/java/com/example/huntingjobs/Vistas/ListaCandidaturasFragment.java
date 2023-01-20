@@ -1,6 +1,7 @@
 package com.example.huntingjobs.Vistas;
 
 import android.app.ActionBar;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -28,8 +29,8 @@ import java.util.ArrayList;
 public class ListaCandidaturasFragment extends Fragment {
 
     public static final String CANDIDATURA = "candidatura";
-    private ListView listaCandidaturas;
-    private ListaCandidaturasAdapter adaptador;
+    public static ListView listaCandidaturas;
+    public static ListaCandidaturasAdapter adaptador;
 
     public ListaCandidaturasFragment() {
         // Required empty public constructor
@@ -47,8 +48,8 @@ public class ListaCandidaturasFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_lista_candidaturas, container, false);
 
         listaCandidaturas = view.findViewById(R.id.lv_Candidaturas);
-        ArrayList<Candidatura> candidaturas = SingletonGestorCandidaturas.getInstance(getContext()).getCandidaturasDB();
-        adaptador = new ListaCandidaturasAdapter(getContext(), SingletonGestorCandidaturas.getInstance(getContext()).getCandidaturasDB());
+        ArrayList<Candidatura> candidaturas = SingletonGestorCandidaturas.getInstance(listaCandidaturas.getContext()).getCandidaturasDB();
+        adaptador = new ListaCandidaturasAdapter(getContext(), candidaturas);
         listaCandidaturas.setAdapter(adaptador);
 
         listaCandidaturas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -59,5 +60,11 @@ public class ListaCandidaturasFragment extends Fragment {
         });
 
         return view;
+    }
+
+    public static void reloadAllData(){
+        ArrayList<Candidatura> candidaturas = SingletonGestorCandidaturas.getInstance(listaCandidaturas.getContext()).getCandidaturasDB();
+        adaptador = new ListaCandidaturasAdapter(listaCandidaturas.getContext(), candidaturas);
+        listaCandidaturas.setAdapter(adaptador);
     }
 }
