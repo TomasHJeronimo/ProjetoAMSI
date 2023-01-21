@@ -34,7 +34,7 @@ public class DetalhesAnuncioActivity extends AppCompatActivity {
     public static final String ANUNCIO_CANDIDATURA = "anuncio_candidatura";
     private TextView tvTitulo, tvDescricao, tvEmpresa, tvPerfil;
     private Anuncio anuncio;
-    private Button search, candidatura, pdf;
+    private Button search, candidatura;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,6 @@ public class DetalhesAnuncioActivity extends AppCompatActivity {
         tvPerfil = findViewById(R.id.etPerfil);
         search = findViewById(R.id.btnSearchEmpresa);
         candidatura = findViewById(R.id.btnCandidatura);
-        pdf = findViewById(R.id.btnPdf);
 
         //Atribuir o ID do anuncio
         long id = getIntent().getLongExtra(ListaAnunciosFragment.ANUNCIO, -1);

@@ -92,7 +92,6 @@ public class MeuPerfilFragment extends Fragment {
                 imageViewProfile.setImageBitmap(bitmap);
                 //Save the image to the SharedPreferences
                 saveProfileImage(bitmap);
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
