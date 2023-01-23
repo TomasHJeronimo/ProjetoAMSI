@@ -87,7 +87,7 @@ public class DetalhesAnuncioActivity extends AppCompatActivity {
                 long id_empresa = SingletonGestorAnuncios.getInstance(getApplicationContext()).getEmpresa(empresa.getId()).getId();
                 long id_anuncio = anuncio.getId();
 
-                Toast.makeText(DetalhesAnuncioActivity.this, "" + anuncio.getId(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(DetalhesAnuncioActivity.this, "" + anuncio.getId(), Toast.LENGTH_SHORT).show();
 
                 Intent candidatura = new Intent(getApplicationContext(), CandidaturaActivity.class);
                 candidatura.putExtra(EMPRESA_CANDIDATURA, id_empresa);

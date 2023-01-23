@@ -25,6 +25,7 @@ import com.example.huntingjobs.Modelo.SingletonGestorCandidaturas;
 import com.example.huntingjobs.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListaCandidaturasFragment extends Fragment {
 

@@ -306,7 +306,7 @@ public class SingletonGestorAnuncios {
                                 loginListener.onValidateLogin(username, password, context);
                             }
 
-                            Toast.makeText(context, "Resulta", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(context, "Resulta", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(context, "Login Inválido", Toast.LENGTH_SHORT).show();
                         }
