@@ -31,10 +31,6 @@ public class RegisterActivity extends AppCompatActivity implements RegistoListen
         email = findViewById(R.id.etEmailRegisto);
         password = findViewById(R.id.etPasswordRegisto);
 
-        username.setText("MonteiroAPI");
-        email.setText("Monteiro@api.teste");
-        password.setText("passwordteste");
-
         username.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
@@ -62,6 +58,13 @@ public class RegisterActivity extends AppCompatActivity implements RegistoListen
 
 
         SingletonGestorAnuncios.getInstance(this).setRegistoListenener(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void validarRegisto() {

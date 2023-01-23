@@ -64,7 +64,7 @@ public class ListaCandidaturasAdapter extends BaseAdapter {
 
 
         //preenchimento do view
-        ListaCandidaturasAdapter.ViewHolderLista viewHL = (ListaCandidaturasAdapter.ViewHolderLista) view.getTag();
+        ViewHolderLista viewHL = (ViewHolderLista) view.getTag();
         if (viewHL == null){
             viewHL = new ViewHolderLista(view);
             view.setTag(viewHL);

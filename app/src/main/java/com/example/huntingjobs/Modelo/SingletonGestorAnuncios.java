@@ -51,16 +51,13 @@ public class SingletonGestorAnuncios {
     private final static String mUrlCandidatura = "http://10.0.2.2/HuntingJobs/backend/web/api/candidaturas/nova";
 
 
-
-
-
     public final static String ID = "id";
     public final static String MAIL = "email";
     public final static String USERNAME = "username";
     public final static String PASSWORD = "password";
     public static final String DADOS_USER = "DADOS_USER";
 
-
+    //Instancias
     private static SingletonGestorAnuncios instancia = null;
     private ArrayList<Anuncio> anunciosLista;
     private ArrayList<Empresa> empresasLista;

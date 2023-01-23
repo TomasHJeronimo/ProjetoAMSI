@@ -82,8 +82,9 @@
                     android:id="@+id/btnSearchEmpresa"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#305370"
                     android:layout_gravity="center"
+                    android:background="@drawable/ic_arrowup"
+                    android:backgroundTint="#305370"
                     android:gravity="center"
                     app:icon="@drawable/ic_arrowup" />
 
@@ -101,15 +102,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view" />
 
-            <EditText
+            <TextView
                 android:id="@+id/etDescricao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:inputType="textMultiLine"
-                android:lines="8"
                 android:focusable="false"
-                android:maxLines="10"
                 android:minLines="5"
                 android:scrollbars="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -128,15 +126,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etDescricao" />
 
-            <EditText
+            <TextView
                 android:id="@+id/etPerfil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:inputType="textMultiLine"
-                android:lines="8"
                 android:focusable="false"
-                android:maxLines="10"
                 android:minLines="5"
                 android:scrollbars="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
